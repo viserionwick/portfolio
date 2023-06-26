@@ -4,6 +4,9 @@ import React from "react";
 // Contexts
 import { useSettingsContext } from "../../../contexts/settingsContext";
 
+// Components
+import { DownloadResume } from "../..";
+
 // Svgs
 import { Icon } from "../../../components/assets/exportSvgs";
 import jump from "jump.js";
@@ -43,7 +46,8 @@ const Hero: React.FunctionComponent = () => {
                   ))
                 }
               </div>
-              <button className="s-hero__resume secButton">download resumé.pdf</button>
+              {/* <button className="s-hero__resume secButton">download resumé.pdf</button> */}
+              <DownloadResume className="s-hero__resume secButton"/>
             </div>
           </div>
           <div className="s-hero__menu">

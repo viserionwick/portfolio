@@ -2,16 +2,27 @@
 import Link from "next/link";
 import Image from "next/image";
 
+// IMPORT: Functions
+import useDownloader from "react-use-downloader";
+/* import pdf from "../components/assets/viserionwick-resume.pdf"; */
+
 // Layout
 export { default as Header } from "./layout/Header";
 export { default as Content } from "./layout/Content";
 export { default as Footer } from "./layout/Footer";
 
 // Headlines
-export const H1 = ({ children, className }: {children: React.ReactNode, className?: string}): JSX.Element => {
+export const H1 = ({ children, className }: { children: React.ReactNode, className?: string }): JSX.Element => {
     return  <h1 className={`c-headline ${className ? className : ""}`}>
                 {children} <span />
             </h1>
+}
+
+// Buttons
+export const DownloadResume = ({ className } : { className?: string }): JSX.Element => {
+    return  <Link href="/viserionwick-resume.pdf" target="_blank" rel="noreferrer" className={ `${className ? className : ""}` }>
+                download resumé.pdf
+            </Link>
 }
 
 // Project Cards
@@ -107,15 +118,15 @@ export const SpotlightProjectCard = ({ name, description, stack, banner, website
                         <Link href={`/project/${slug}`} className="c-spotlightCard__buttons--url priButton">details</Link>
                         { 
                             website &&
-                            <a href={website} rel="noreferrer" className="c-spotlightCard__buttons--website priButton roundButton">
+                            <Link href={website} target="_blank" rel="noreferrer" className="c-spotlightCard__buttons--website priButton roundButton">
                                 <i className="fa-solid fa-earth-americas" />
-                            </a>
+                            </Link>
                         }
                         { 
                             repository &&
-                            <a href={repository} rel="noreferrer" className="c-spotlightCard__buttons--repository priButton roundButton">
+                            <Link href={repository} target="_blank" rel="noreferrer" className="c-spotlightCard__buttons--repository priButton roundButton">
                                 <i className="fa-brands fa-github" />
-                            </a>
+                            </Link>
                         }
                     </div>
                 </div>

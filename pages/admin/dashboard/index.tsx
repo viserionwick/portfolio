@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { NextPage } from 'next';
 import axios, { AxiosError } from 'axios'
 import { useSession, signOut } from 'next-auth/react';
+import { AUTH_API_ENDPOINT } from '../../../utils/veriables';
 
 const Admin: NextPage = () => {
     const { data: session } = useSession();
@@ -118,7 +119,7 @@ const Admin: NextPage = () => {
             /* console.log(formData); */
             
             
-            const apiRes = await axios.post("http://localhost:3000/api/auth/signup", formData)
+            const apiRes = await axios.post(`${AUTH_API_ENDPOINT}/signup`, formData)
 
             try {
                 setFormLoading(true)

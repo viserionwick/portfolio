@@ -6,7 +6,7 @@ import { useSettingsContext } from "../../../contexts/settingsContext";
 import { sendEmail } from "../../../utils/services/contacts";
 
 // Components
-import { H1 } from "../../index"
+import { DownloadResume, H1 } from "../../index"
 
 const Contact: React.FunctionComponent = () => {
 
@@ -114,7 +114,7 @@ const Contact: React.FunctionComponent = () => {
         isSent ?
         <div className="s-contact__sent">
           Successfully Sent!
-          <button className="secButton">download resumé.pdf</button>
+          <DownloadResume className="secButton"/>
         </div>
         :
         <>
@@ -122,7 +122,12 @@ const Contact: React.FunctionComponent = () => {
             {
               work?.status ?
               <>
-                currently working at: <a href={work?.companyURL} target="_blank" rel="noreferrer" className="s-contact__workInfo--company link">{ work?.companyName }</a> as { work?.position }.
+                currently working at:
+                <br/>
+                <a href={work?.companyURL} target="_blank" rel="noreferrer" className="s-contact__workInfo--company link">{ work?.companyName }</a>
+                <br/>
+                as { work?.position }.
+                <br/>
                 <br/>
                 let&apos;s get in touch to examine availability.
               </>

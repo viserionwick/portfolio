@@ -261,6 +261,11 @@
 
         margin-bottom: 170px;
         padding-top: 90px;
+        
+        &.s-hero {
+            margin-bottom: 0px;
+            padding-top: 0px;
+        }
     }
 
     @include tablet {

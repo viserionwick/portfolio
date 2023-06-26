@@ -1,6 +1,6 @@
 // Essentials
 import axios from "axios";
-const GRAPHQL_API_ENDPOINT = "https://viserionwick.vercel.app/api/graphql";
+import { GRAPHQL_API_ENDPOINT } from "../veriables";
 
 // Fetch Work Status
 export const getSkills = async () => {

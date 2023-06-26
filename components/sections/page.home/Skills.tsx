@@ -5,7 +5,7 @@ import React from "react";
 import { AllProps } from "../../../pages/_app";
 
 // Components
-import { H1 } from "../../index"
+import { DownloadResume, H1 } from "../../index"
 import Marquee from "react-fast-marquee";
 
 const Skills: React.FunctionComponent<AllProps> = ({ skills }) => {
@@ -54,11 +54,7 @@ const Skills: React.FunctionComponent<AllProps> = ({ skills }) => {
           </Marquee>
         </div>
 
-        
-
-        <button className="s-skills__resume priButton">
-          download resumé.pdf
-        </button>
+        <DownloadResume className="s-skills__resume priButton"/>
     </section>
   )
 }
