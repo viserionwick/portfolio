@@ -1,6 +1,6 @@
 ## 🐲 ABOUT
 A portfolio website created by Viserion Wick.
-This is the personal website of [Viserion Wick](viserionwick.vercel.com) but you can fork and modify it as you wish to use it as your own.
+This is the personal website of [Viserion Wick](https://viserionwick.vercel.com) but you can fork and modify it as you wish to use it as your own.
 ___
 
 ### 🧱 BUILT WITH
