@@ -1,0 +1,53 @@
+// Flex: Layout
+@mixin flexRow() {
+  display: flex;
+  flex-direction: row;
+}
+@mixin flexColumn() {
+  display: flex;
+  flex-direction: column;
+}
+
+// Flex: Centerings
+@mixin flexCenter() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flexCenterV() {
+  display: flex;
+  align-items: center;
+}
+@mixin flexCenterH() {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flexCenterColumn() {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flexCenterColumnV() {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@mixin flexCenterColumnH() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// Flex: Spread
+@mixin flexSpaceBetween() {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin flexSpaceBetweenColumn() {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

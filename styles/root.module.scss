@@ -1,0 +1,148 @@
+// Essentials
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+
+  background-color: $bkgColor;
+  color: white;
+
+  font-family: $priFont;
+  font-size: 16px;
+  font-variation-settings: "wght" 300;
+  text-transform: lowercase;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  padding: 0 2px;
+}
+::-webkit-scrollbar-track {
+  background: none;
+}
+::-webkit-scrollbar-thumb {
+  background: #454546;
+
+  &:hover {
+    background: white;
+  }
+}
+
+// UI
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+  color: inherit;
+  text-decoration: none;
+
+  margin: 0;
+}
+
+a.link {
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+
+  margin: 0 3px;
+  color: $secColor;
+  text-transform: none;
+
+  @include tablet("min") {
+    &:hover {
+      color: $secColor;
+      z-index: 2;
+
+      &::after {
+        width: 100%;
+        height: 2px;
+      }
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: -1px;
+      width: 0;
+      background: $secColor;
+      transition: 200ms;
+      z-index: -1;
+    }
+  }
+
+  @include tablet("max") {
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: -1px;
+      width: 100%;
+      height: 2px;
+      background: $secColor;
+      transition: 200ms;
+    }
+  }
+}
+
+b {
+  font-variation-settings: "wght" 600;
+}
+
+span.loading {
+  display: block;
+  width: 40px;
+  height: 40px;
+  position: relative;
+
+  &:before,
+  &:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: mix(black, white, 70%);
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: bounce 2s infinite ease-in-out;
+    animation: bounce 2s infinite ease-in-out;
+  }
+
+  &:after {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+  }
+}
+
+input[type="text"],
+textarea {
+  padding: 0;
+  outline: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// Animations
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}

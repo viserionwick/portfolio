@@ -1,0 +1,195 @@
+// Colors
+/* $priColor: #0e0f0f; */
+$secColor: #feffc8;
+$bkgColor: #171718;
+
+// Fonts
+$priFont: "Plus Jakarta Sans";
+
+// Buttons
+.priButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: black;
+  background: white;
+  border: 0;
+
+  font-family: $priFont;
+  font-size: 13px;
+  font-variation-settings: "wght" 700;
+
+  padding: 10px 24px;
+  border-radius: 20px;
+
+  cursor: pointer;
+  transition: 100ms;
+
+  &:hover {
+    background: rgba(white, 0.8);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    position: relative;
+
+    color: gray;
+    background-color: rgba(white, 0.2);
+
+    overflow: hidden;
+  }
+
+  &.loading {
+    cursor: not-allowed;
+    position: relative;
+
+    color: gray;
+    background: none !important;
+
+    overflow: hidden;
+
+    &::after {
+      content: "";
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      position: absolute;
+      left: 0;
+      right: 0;
+
+      @keyframes loading {
+        0% {
+          box-shadow: 0 0 15px 0px rgba(white, 0.2);
+        }
+        50% {
+          box-shadow: 0 0 15px 20px rgba(white, 0.2);
+        }
+        100% {
+          box-shadow: 0 0 15px 0px rgba(white, 0.2);
+        }
+      }
+
+      animation: loading 400ms infinite;
+
+      z-index: 1;
+    }
+  }
+
+  @include mobile {
+    &:hover {
+      background: white;
+    }
+  }
+
+  &.roundButton {
+    width: 37px;
+    height: 37px;
+
+    font-size: 17px;
+
+    padding: 0;
+  }
+
+  &.inverted {
+    color: white;
+    background: none;
+    border: 2px solid white;
+
+    &:hover {
+      background: rgba(white, 0.1);
+    }
+
+    @include mobile {
+      &:hover {
+        background: none;
+      }
+    }
+  }
+}
+
+.secButton {
+  color: white;
+  background: rgba(white, 0.2);
+  border: 0;
+
+  font-family: $priFont;
+  font-size: 13px;
+  font-variation-settings: "wght" 500;
+
+  padding: 10px 24px;
+  border-radius: 20px;
+
+  cursor: pointer;
+  transition: 100ms;
+
+  &:hover {
+    background: rgba(white, 0.3);
+  }
+
+  @include mobile {
+    &:hover {
+      background: rgba(white, 0.2);
+    }
+  }
+}
+
+.terButton {
+  color: white;
+  background-color: rgba($bkgColor, 0.2);
+  backdrop-filter: blur(18px);
+  border: 0;
+
+  font-family: $priFont;
+  font-size: 13px;
+  font-variation-settings: "wght" 500;
+
+  padding: 10px 24px;
+  border-radius: 20px;
+
+  cursor: pointer;
+  transition: 100ms;
+
+  &:hover {
+    background-color: rgba(white, 0.05);
+  }
+
+  @include mobile {
+    &:hover {
+      background-color: rgba($bkgColor, 0.2);
+    }
+  }
+}
+
+.priForm {
+  // Text Inputs
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  select,
+  textarea {
+    color: white;
+
+    font-family: "Plus Jakarta Sans";
+    font-size: 13px;
+    font-variation-settings: "wght" 650;
+
+    padding: 10px 24px;
+
+    border: none;
+    border-radius: 20px;
+
+    background-color: rgba(white, 0.2);
+
+    &.error {
+      background-color: rgba(red, 0.2);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: rgba(white, 0.2);
+    }
+  }
+}

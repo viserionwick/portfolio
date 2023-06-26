@@ -1,0 +1,218 @@
+$laptop: 1155px;
+$mobile: 475px;
+
+.s-hero {
+    justify-content: center;
+    position: relative;
+
+    max-width: 1105px !important;
+
+    margin-top: -55px;
+
+    .s-hero--wrapper {
+        position: relative;
+        width: 100%;
+        height: 400px;
+
+        @include respond($laptop){
+            height: 300px;
+        }
+
+        @include tablet {
+            height: 320px;
+        }
+
+        @include respond($mobile) {
+            height: 270px;
+        }
+
+        .s-hero__icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            
+            width: 475px;
+            height: 400px;
+            
+            @include respond($laptop) {
+                width: 376px;
+                height: 312px;
+            }
+
+            @include tablet {
+                width: 284px;
+                height: 227px;
+            }
+
+            @include respond($mobile) {
+                width: 218px;
+                height: 182px;
+            }
+        }
+    
+        .s-hero__rightSide {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: space-between;
+
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+    
+            .s-hero__logoText {
+                text-transform: none;
+                font-size: 133px;
+                font-variation-settings: "wght" 750;
+                line-height: 105px;
+
+                margin-bottom: 15px;
+                
+                order: 1;
+
+                @include respond($laptop) {
+                    font-size: 75px;
+                    line-height: 60px;
+                }
+
+                @include tablet {
+                    font-size: 50px;
+                    line-height: 40px;
+                    margin-bottom: 30px;
+                }
+
+                @include respond($mobile) {
+                    font-size: 38px;
+                    line-height: 35px;
+                    margin-bottom: 28px;
+                }
+            }
+
+            .s-hero__info {
+                @include flexCenterV;
+                gap: 26px;
+
+                order: 2;
+
+                @include tablet {
+                    width: 100%;
+                    justify-content: space-between;
+                    margin-top: 29px;
+
+                    order: 3;
+                }
+
+                .s-hero__description {
+                    font-size: 21.6px;
+                    font-variation-settings: "wght" 600;
+
+                    @include respond($laptop) {
+                        font-size: 15px;
+                        width: 163px;
+                        text-align: right;
+                    }
+
+                    @include tablet {
+                        font-size: 18px;
+                        width: 208px;
+                        text-align: center;
+                        margin-left: 45px;
+                    }
+
+                    @include respond($mobile) {
+                        font-size: 18px;
+                        width: unset;
+                        text-align: right;
+                        margin-left: unset;
+                    }
+                }
+
+                .s-hero__links {
+                    @include flexCenterV;
+                    gap: 26px;
+
+                    @include tablet {
+                        flex-direction: column;
+                        gap: 13px;
+                    }
+
+                    .s-hero__social {
+                        @include flexCenterV;
+                        gap: 24px;
+
+                        @include tablet {
+                            gap: 31px;
+                        }
+
+                        .s-hero__social--anchor {
+                            font-size: 20px;
+                            transition: 100ms;
+                            &:hover { color: rgba(white, .8); }
+                        }
+                    }
+
+                    .s-hero__resume {
+                        @include respond($laptop) {
+                            padding: 10px 10px;
+                            font-size: 12px;
+                        }
+
+                        @include tablet {
+                            padding: 8px 11px;
+                            font-size: 9px;
+                        }
+                    }
+                }
+            }
+
+            .s-hero__menu {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+
+                order: 3;
+
+                @include respond($laptop) {
+                    gap: 20px;
+                }
+
+                @include tablet {
+                    gap: 20px;
+                    
+                    order: 2;
+                }
+
+                .s-hero__menu--anchor {
+                    font-size: 64px;
+                    font-variation-settings: "wght" 750;
+                    line-height: 70px;
+                    transition: 300ms;
+
+                    &:hover {
+                        font-variation-settings: "wght" 800;
+                        letter-spacing: 1px;
+                    }
+
+                    @include respond($laptop) {
+                        font-size: 45px;
+                        line-height: 45px;
+                    }
+
+                    @include tablet {
+                        font-size: 36px;
+                        font-variation-settings: "wght" 700;
+                        line-height: 36px;
+                    }
+                    
+                    @include respond($mobile) {
+                        font-size: 24px;  
+                        font-variation-settings: "wght" 700;
+                        line-height: 24px;                      
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,458 @@
+.p-project {    
+    width: 100%;
+    max-width: 1105px;
+
+    .p-project__info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+
+        width: 100%;
+
+        margin-top: 34px;
+        
+        .p-project__date {
+            font-size: 11px;
+        }
+        
+        .p-project__name {
+            font-size: 100px;
+            font-variation-settings: "wght" 800;
+            
+            @include tablet {
+                font-size: 70px;
+            }
+        }
+
+        .p-project__stack {
+            @include flexCenterV;
+            justify-content: flex-start;
+            gap: 10px;
+
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 50px;
+
+            background: rgba(white, .1);
+
+            .p-project__tech {
+                @include flexCenter;
+                position: relative;
+                
+                width: 35px;
+                height: 35px;
+
+                padding: 5px;
+
+                background-color: $bkgColor;
+
+                border-radius: 35px;
+                
+                filter: grayscale(1); 
+
+                &:hover {
+                    .p-project--techTooltip { visibility: visible; opacity: 1; }
+                }
+
+                img {
+                    width: 100% !important;
+                    height: auto !important;
+                }
+
+                .p-project--techTooltip {
+                    position: absolute;
+                    bottom: -100%;
+
+                    font-size: 14px;
+                    font-variation-settings: "wght" 500;
+                    text-transform: none;
+                    white-space: nowrap;
+
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: 100ms;
+                }
+            }
+        }
+    }
+
+    .p-project--content {
+        @include flexSpaceBetween;
+        gap: 90px;
+        
+        width: 100%;
+
+        @include respond(1234px){
+            flex-direction: column;
+        }
+
+        .p-project__tabs {
+            @include flexCenterColumnH;
+            gap: 315px;
+
+            @include tablet {
+                gap: 170px;
+            }
+
+            > .c-laptopVector {
+                height: 60vh !important;
+
+                > .c-laptopVector--wrapper {
+                    width: 100%;
+                    height: 100%;
+                    position: unset !important;
+                }
+            }
+
+            > .c-phoneVector {
+                position: relative;
+                height: 70vh !important;
+                width: 100%;
+                perspective: 2033px;
+
+                > .c-phoneVector--wrapper {
+                    width: 100%;
+                    height: 100%;
+                    position: unset !important;
+                }
+            }
+
+            .p-project__tab {
+
+                width: 100%;
+
+                h1 {
+                    font-variation-settings: "wght" 600;
+
+                    margin-bottom: 40px;
+                }
+
+                p {
+                    font-size: 21px;
+                    font-variation-settings: "wght" 400;
+                    text-align: justify;
+                    text-transform: none;
+                }
+            }
+
+            .p-project__buttons {
+                @include flexCenter;
+                gap: 15px;
+
+                margin-top: 20px;
+
+                a {
+                    flex: 1;
+
+                    i {
+                        font-size: 15px;
+                        margin-left: 5px;
+                    }
+                }
+            }
+        }
+
+        .c-laptopVector {
+            position: relative;
+
+            width: 100%;
+            height: 353px;
+        
+            perspective: 2033px;
+        }
+        
+        > .p-project__leftColumn {
+            @include flexCenterColumnH;
+            gap: 470px;
+
+            width: 100%;
+            max-width: 432px;
+        }
+
+        > .p-project__rightColumn {
+            @include flexCenterColumnH;
+
+            width: 100%;
+            max-width: 585px;
+            min-height: 2500px;
+
+            .p-project__laptops {
+                position: relative;
+
+                width: 100%;
+                flex: 1;
+
+                .c-laptopVector {
+                    position: absolute !important;
+    
+                    width: 582px !important;
+                    height: 353px !important;
+                
+                    perspective: 2033px !important;
+
+                    &._1 {
+                        transform: scale(1);
+                        top: 85px;
+                    }
+
+                    &._2 {
+                        transform: scale(0.55);
+                        left: -130px;
+                        top: 428px;
+                    }
+                    
+                    &._3 {
+                        transform: scale(0.69);
+                        right: -90px;
+                        top: 553px;
+                    }
+                    
+                    &._4 {
+                        transform: scale(0.37);
+                        left: -182px;
+                        top: 806px;
+                    }
+
+                    &._5 {
+                        transform: scale(1);
+                        top: 923px;
+                    }
+                }
+
+                .p-project__laptopsWinds {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+
+                    .p-project__laptopsWind {
+                        display: block;
+
+                        position: absolute;
+
+                        width: 1px;
+                        min-height: 1px;
+
+                        background: rgba(white, .5);
+
+                        &._1 {
+                            height: 39px;
+
+                            top: 469px;
+                            left: 286px;
+                        }
+
+                        &._2 {
+                            height: 73px;
+
+                            top: 505px;
+                            left: 525px;
+                        }
+
+                        &._3 {
+                            height: 59px;
+
+                            top: 784px;
+                            left: 88px;
+                        }
+
+                        &._4 {
+                            height: 35px;
+
+                            top: 1110px;
+                            left: 68px;
+                        }
+
+                        &._5 {
+                            height: 22px;
+
+                            top: 1188px;
+                            left: 168px;
+                        }
+                    }
+                }
+            }
+
+            .p-project__phones {
+                position: relative;
+
+                width: 100%;
+                flex: 1;
+
+                .c-phoneVector {
+                    position: absolute !important;
+    
+                    width: 168px !important;
+                    height: 474px !important;
+                
+                    perspective: 351px !important;
+
+                    &._1 {
+                        transform: scale(1);
+                        top: 85px;
+                        left: 208px;
+                    }
+
+                    &._2 {
+                        transform: scale(1);
+                        top: 680px;
+                        left: 208px;
+                    }
+                    
+                    &._3 {
+                        transform: scale(0.7);
+                        right: 444px;
+                        top: 426px;
+                    }
+                    
+                    &._4 {
+                        transform: scale(0.7);
+                        right: 444px;
+                        top: 969px;
+                    }
+
+                    &._5 {
+                        transform: scale(0.7);
+                        right: -35px;
+                        top: 224px;
+                    }
+
+                    &._6 {
+                        transform: scale(0.7);
+                        right: -35px;
+                        top: 818px;
+                    }
+                }
+
+                .p-project__phonesWinds {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+
+                    .p-project__phonesWind {
+                        display: block;
+
+                        position: absolute;
+
+                        width: 1px;
+                        min-height: 1px;
+
+                        background: rgba(white, .5);
+
+                        &._1 {
+                            height: 31px;
+                            
+                            top: 375px;
+                            left: 111px;
+                        }
+
+                        &._2 {
+                            height: 49px;
+                            
+                            top: 210px;
+                            left: 450px;
+                        }
+
+                        &._3 {
+                            height: 37px;
+                            
+                            top: 621px;
+                            left: 339px;
+                        }
+
+                        &._4 {
+                            height: 24px;
+                            
+                            top: 748px;
+                            left: 147px;
+                        }
+
+                        &._5 {
+                            height: 86px;
+
+                            top: 715px;
+                            left: 565px;
+                        }
+
+                        &._6 {
+                            height: 63px;
+                            
+                            top: 933px;
+                            left: 86px;
+                        }
+
+                        &._7 {
+                            height: 72px;
+                            
+                            top: 1223px;
+                            left: 255px;
+                        }
+                        
+                        &._8 {
+                            height: 46px;
+
+                            top: 1292px;
+                            left: 511px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .p-project--outro {
+        @include flexCenterColumnH;
+
+        .p-project__logo {
+            margin: 338px 0 213px 0;
+
+            svg {
+                width: 598px;
+                height: 136px;
+            }
+
+            @include tablet {
+                margin: 192px 0 192px 0;
+
+                svg {
+                    width: 329px;
+                    height: 84px;
+                }
+            }
+
+            @include mobile {
+                svg {
+                    width: 187px;
+                    height: 52px;
+                }
+            }
+        }
+
+        .p-project__otherProjects {
+            @include flexCenterColumnH;
+            gap: 55px;
+
+            width: 100%;
+            max-width: 881px;
+
+            .p-project--otherProjectsContent {
+                display: grid;
+                grid-template-columns: 32% 32% 32%;
+                grid-column-gap: 2%;
+                grid-row-gap: 55px;
+
+                width: 100%;
+
+                @include tablet {
+                    grid-template-columns: 100%;
+                }
+            }
+
+            .p-project__moreButton { margin-top: 20px; }
+        }
+    }
+}

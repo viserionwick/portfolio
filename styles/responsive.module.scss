@@ -1,0 +1,47 @@
+@mixin respond($size, $direction: "max") {
+  @if $direction == "max" {
+    @media (max-width: $size) {
+      @content;
+    }
+  } @else if $direction == "min" {
+    @media (min-width: $size) {
+      @content;
+    }
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 425px) {
+    @content;
+  }
+}
+
+@mixin tablet($direction: "max") {
+  @if $direction == "max" {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $direction == "min" {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+}
+
+@mixin laptop {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (max-width: 1440px) {
+    @content;
+  }
+}
+
+@mixin desktopUp {
+  @media (min-width: 1440px) {
+    @content;
+  }
+}

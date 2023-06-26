@@ -1,0 +1,48 @@
+.s-projects {
+    gap: 55px;
+    
+
+    .s-projects__other {
+        display: grid;
+        grid-row-gap: 55px;
+        grid-column-gap: 2%;
+
+        width: 100%;
+
+        @include tablet {
+            grid-template-columns: 433px !important;
+            justify-content: center;
+        }
+        
+        @include respond(495px) {
+            grid-template-columns: 100% !important;
+        }
+
+        @include respond(999px, "min") {
+            grid-template-columns: 32% 32% 32%;
+            
+            .c-card .c-card__images .c-card__stack {
+                width: 53px;
+                gap: 9px;
+                
+                .c-card--tech {
+                    width: 29px;
+                    height: 29px;
+                }
+            }
+        }        
+
+        @include respond(999px, "max") {
+            grid-template-columns: 49% 49%;
+            .c-card .c-card__images {
+                width: 100%;
+                min-width: unset;
+                height: 25.6vw;
+            }
+        }
+    }
+
+    .s-projects__moreButton {
+        margin-top: 20px;
+    }
+}

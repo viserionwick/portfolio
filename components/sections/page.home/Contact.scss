@@ -1,0 +1,104 @@
+.s-contact {
+    gap: 55px;
+
+    .s-contact__workInfo {
+        text-align: center;
+        font-size: 17px;
+
+        color: #FEFFC8;
+
+        @include mobile {
+            font-size: 14px;
+        }
+    }
+
+    .s-contact__form {
+        @include flexCenterH;
+        gap: 15px;
+
+        width: 100%;
+
+        @include tablet {
+            flex-direction: column;
+
+            .s-contact--message {
+                flex: unset !important;
+
+                textarea {
+                    height: 142px !important;
+                }
+            }
+        }
+
+        .s-contact--message {
+            flex: 1;
+
+            position: relative;
+            
+            textarea {
+                width: 100%;
+                
+                height: 100%;
+                
+                resize: none;
+            }
+
+            .s-contact--messageCounter {
+                position: absolute;
+                right: 18px;
+                bottom: 18px;
+
+                font-family: "Plus Jakarta Sans";
+                font-size: 12px;
+                font-variation-settings: "wght" 500;
+
+                color: $secColor;
+
+                &.max {
+                    color: red;
+                }
+            }
+        }
+        
+        .s-contact--info {
+            @include flexCenterColumnH;
+            flex: 1;
+            gap: 15px;
+    
+            input, button {
+                width: 100%;
+            }
+        }
+    }
+
+    .s-contact__sent {
+        @include flexCenterColumn;
+        gap: 20px;
+
+        height: 215px;
+
+        font-variation-settings: "wght" 600;
+        color: $secColor;
+
+        button { font-size: 9px }
+    }
+    .s-contact__sending {
+        @include flexCenter;
+        height: 215px;
+    }
+
+    .s-contact__social {
+        @include flexCenterV;
+        gap: 24px;
+
+        @include tablet {
+            gap: 31px;
+        }
+
+        .s-contact__social--anchor {
+            font-size: 20px;
+            transition: 100ms;
+            &:hover { color: rgba(white, .8); }
+        }
+    }
+}

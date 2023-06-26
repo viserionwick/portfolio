@@ -1,0 +1,11 @@
+.withLoading {
+    @include flexCenterH;
+
+    padding: 30vh 0 0 0;
+    height: 100vh;
+
+    > .loading {
+        width: 60px !important;
+        height: 60px !important;
+    }
+}
