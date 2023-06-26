@@ -1,6 +1,6 @@
 // Essentials
 import axios from "axios";
-const GRAPHQL_API_ENDPOINT = "http://localhost:3000/api/graphql";
+const GRAPHQL_API_ENDPOINT = "https://viserionwick.vercel.app/api/graphql";
 
 // Fetch Work Status
 export const getSettings = async () => {
