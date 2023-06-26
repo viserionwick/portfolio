@@ -3,8 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 // IMPORT: Functions
-import useDownloader from "react-use-downloader";
-/* import pdf from "../components/assets/viserionwick-resume.pdf"; */
 
 // Layout
 export { default as Header } from "./layout/Header";
