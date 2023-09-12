@@ -13,9 +13,7 @@ import { AllProps } from './_app'
 import { getProjects, getSpotlightProject } from '../utils/services/projects'
 import { getSkills } from '../utils/services/skills'
 
-const Home: NextPage<AllProps> = ({ spotlightProject, projects, skills }) => {  
-
-  console.log(window.location.port)
+const Home: NextPage<AllProps> = ({ spotlightProject, projects, skills }) => {
 
   return (
     <div className="p-home">

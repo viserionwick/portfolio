@@ -55,6 +55,18 @@ const apolloServer = new ApolloServer({
   resolvers,
 });
 
+export const getGraphqlBaseUrl = (req: any) => {
+  const isLocal = process.env.NODE_ENV === 'development';
+  if (isLocal) {
+    return 'http://localhost:3000/api/graphql';
+  }
+  const protocol = req.headers['x-forwarded-proto'] || 'http';
+  const host = req.headers.host || 'localhost:3000';
+
+  return `${protocol}://${host}/api/graphql`;
+};
+
+
 export default startServerAndCreateNextHandler(apolloServer, {
   context: async (req, res) => ({ req, res, db: await dbConnect() }),
 });
