@@ -15,6 +15,8 @@ import { getSkills } from '../utils/services/skills'
 
 const Home: NextPage<AllProps> = ({ spotlightProject, projects, skills }) => {  
 
+  console.log(window.location.port)
+
   return (
     <div className="p-home">
       <Head>
