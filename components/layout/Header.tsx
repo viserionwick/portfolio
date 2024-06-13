@@ -1,14 +1,12 @@
 // Essentials
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useAtom } from 'jotai/react'
 
 // Components
-import jump from "jump.js";
 
 // Hooks
 import useWindowSize from "../../hooks/useWindowSize";
-import useHash from "../../hooks/useHash";
 
 // States
 import { sectionInView_atom } from "../../pages";
@@ -16,14 +14,14 @@ import { sectionInView_atom } from "../../pages";
 // Svgs
 import { Logo } from "../assets/exportSvgs";
 import { useSettingsContext } from "../../contexts/settingsContext";
-import { useRouter } from "next/router";
+/* import { useRouter } from "next/router"; */
 
 
 const Header: React.FC = () => {
 
   const settings = useSettingsContext();
   const { isMobile } = useWindowSize();
-  const router = useRouter();
+  /* const router = useRouter(); */
   /* const { hash } = useHash();
   const { push: goTo } = useRouter(); */
 
@@ -31,12 +29,11 @@ const Header: React.FC = () => {
   
   
 
-  const scrollTo = (to: string, duration: number = 300, offset: number = 0) => {
+  /* const scrollTo = (to: string, duration: number = 300, offset: number = 0) => {
     if (!isMobile && router.pathname === "/") {
-      /* jump(to, {duration, offset}) */
-      /* goTo(`/${to}`); */
+      jump(to, {duration, offset})
     }
-  }
+  } */
   const workStatus: boolean | undefined = settings?.work?.status;
 
 
@@ -71,7 +68,7 @@ const Header: React.FC = () => {
         </div>
         <div className={`l-header__menu--wrapper ${isMenu ? "on" : "off"}`}>
           <Link
-            onClick={() => {toggleMenu(false); scrollTo("#projects")}}
+            onClick={() => {toggleMenu(false);}}
             href="/#projects"
             className={`
               l-header__menu--anchor
@@ -87,7 +84,7 @@ const Header: React.FC = () => {
             projects.
           </Link>
           <Link
-            onClick={() => {toggleMenu(false); scrollTo("#skills")}}
+            onClick={() => {toggleMenu(false);}}
             href="/#skills"
             className={`
               l-header__menu--anchor
@@ -103,7 +100,7 @@ const Header: React.FC = () => {
             skills.
           </Link>
           <Link
-            onClick={() => {toggleMenu(false); scrollTo("#contact")}}
+            onClick={() => {toggleMenu(false);}}
             href="/#contact"
             className={`
               l-header__menu--anchor

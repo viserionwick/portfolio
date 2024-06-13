@@ -5,6 +5,8 @@ import { useTable } from "react-table";
 const Table = ( { content, editable } : any) => {
     const data = useMemo(() => content.data, []);
     const columns = useMemo( () => content.columns, []);
+    console.log(editable);
+    
 
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data });
 
@@ -14,8 +16,8 @@ const Table = ( { content, editable } : any) => {
     
   return (
     <table className="priTable" {...getTableProps()}>
-          <thead>
-            {headerGroups.map((headerGroup) => (
+          {/* <thead>
+            {headerGroups.map((headerGroup, i) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {
                   headerGroup.headers.map((column) => (
@@ -46,7 +48,7 @@ const Table = ( { content, editable } : any) => {
                 }
               )
             }
-          </tbody>
+          </tbody> */}
     </table>
   );
 };
