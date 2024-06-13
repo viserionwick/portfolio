@@ -1,0 +1,12 @@
+.p-admin__login {
+    @include flexCenterColumnH;
+    gap: 20px;
+    width: 230px;
+    margin: 50px 0;
+
+    button, input, select, h1 {
+        width: 100%;
+        text-align: center;
+        outline: none;
+    }
+}

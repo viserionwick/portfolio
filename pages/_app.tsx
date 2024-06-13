@@ -5,7 +5,9 @@ import { DefaultSeo } from "next-seo";
 import SEO from '../next-seo.config';
 
 // Contexts
+import { Provider as JotaiProvider } from 'jotai'
 import { SettingsProvider } from "../contexts/settingsContext";
+import { PopUpProvider } from "../contexts/popUpContext";
 
 // Contexts: Auth
 import { SessionProvider } from "next-auth/react";
@@ -36,21 +38,25 @@ export default function App({ Component, pageProps, settings }: AppProps & { set
   const ComponentWithLoading = withLoading(Component);
 
   return (
-    <SettingsProvider settings={settings}>
-      <SessionProvider session={pageProps.session}>
-        <DefaultSeo {...SEO} />
-        <Layout>
-          <Head>
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1.0"
-            />
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
-          <ComponentWithLoading {...pageProps} />
-        </Layout>
-      </SessionProvider>
-    </SettingsProvider>
+    <JotaiProvider>
+      <SettingsProvider settings={settings}>
+        <SessionProvider session={pageProps.session}>
+          <DefaultSeo {...SEO} />
+          <Layout>
+            <Head>
+              <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+              />
+              <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <PopUpProvider>
+              <ComponentWithLoading {...pageProps} />
+            </PopUpProvider>
+          </Layout>
+        </SessionProvider>
+      </SettingsProvider>
+    </JotaiProvider>
   );
 }
 

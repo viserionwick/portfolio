@@ -1,0 +1,256 @@
+.p-admin-newProject {
+    max-width: 600px;
+    width: 100%;
+
+    .p-admin-newProject--textarea {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        min-height: 140px;
+    }
+
+    .p-admin-newProject--buttons {
+        @include flexCenterColumnH;
+        gap: 30px;
+        margin-bottom: 50px;
+
+        .p-admin-newProject__submit {
+            width: 100%;
+        }
+
+        .p-admin-newProject__delete {
+            width: 100%;
+        }
+    }
+    
+    
+
+    .p-admin-newProject__heading {
+        text-align: center;
+        margin: 30px;
+    }
+
+    // Specific
+    .p-admin-newProject--slugInput {
+        display: flex;
+        position: relative;
+        gap: 5px;
+
+        input {
+            padding-left: 76px;
+            flex: 1 1;
+        }
+
+        span {
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translate(0, -50%);
+            font-size: 13px;
+            margin-top: 0px;
+            opacity: 0.5;
+            font-variation-settings: "wght" 500;
+        }
+    }
+
+    .p-admin-newProject--tabs {
+        background-color: mix($bkgColor, white, 95%);
+        padding: 10px 16px;
+        border-radius: 20px;
+        padding-bottom: 20px;
+        margin: 20px 0;
+
+        > h1 {
+            text-transform: uppercase;
+            font-size: 16px;
+            font-variation-settings: "wght" 600;
+            color: var(--gray-8);
+            margin-bottom: 15px;
+        }
+
+        .p-admin-newProject--tab {
+            margin-bottom: 50px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+
+        .p-admin-newProject--tabNumber {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 13px;
+            height: 13px;
+            border-radius: 10px;
+            margin-right: 6px;
+            padding: 9px;
+            background-color: white;
+            color: black;
+        }
+    }
+
+    .p-admin-newProject--stack {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 28px;
+        background-color: rgba(white, 0.2);
+
+        .p-admin-newProject--tech,
+        .p-admin-newProject--addTech {
+            @include flexCenter;
+            position: relative;
+            
+            width: 35px;
+            height: 35px;
+            min-width: 35px;
+            min-height: 35px;
+            max-width: 35px;
+            max-height: 35px;
+
+            padding: 5px;
+
+            color: white;
+            background-color: $bkgColor;
+
+            border-radius: 35px;
+            
+            filter: grayscale(1);
+            cursor: pointer; 
+            overflow: hidden;
+        }
+
+        .p-admin-newProject--tech {
+            &:hover {
+                .p-admin-newProject--techTooltip { visibility: visible; opacity: 1; }
+            }
+
+            img {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            .p-admin-newProject--techTooltip {
+                @include flexCenter;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+
+                font-size: 14px;
+                font-variation-settings: "wght" 500;
+                text-transform: none;
+                white-space: nowrap;
+
+                opacity: 0;
+                visibility: hidden;
+                transition: 80ms;
+
+                background-color: $bkgColor;
+            }
+        }
+
+        .p-admin-newProject--addTech {
+            background-color: white;
+            color: black;
+        }
+    }
+
+    .p-admin-newProject--switch {
+        margin: 20px 0 30px 0;
+    }
+    
+}
+
+// COMPONENTS: Add Tech
+.p-admin-newTech {
+    
+    .FormRoot {
+        margin-top: 0
+    }
+
+    .p-admin-newTech--list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 15px 0 0 0;
+        
+        .p-admin-newTech--tech {
+            @include flexCenterV;
+            gap: 10px;
+            width: 100%;
+
+            border-radius: 27px;
+    
+            border: 0;
+            padding: 0;
+            margin: 0;
+            background: none;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $bkgColor;
+            }
+    
+            .p-admin-newTech--techImage{
+                @include flexCenter;
+                position: relative;
+                
+                width: 35px;
+                height: 35px;
+                min-width: 35px;
+                min-height: 35px;
+                max-width: 35px;
+                max-height: 35px;
+    
+                padding: 5px;
+    
+                color: white;
+                background-color: $bkgColor;
+    
+                border-radius: 35px;
+                
+                filter: grayscale(1);
+                cursor: pointer; 
+                overflow: hidden;
+    
+                img {
+                    width: 100% !important;
+                    height: auto !important;
+                }
+            }
+    
+            .p-admin-newTech--techName {
+                color: white;
+            }
+
+            .p-admin-newTech--techAdded {
+                color: var(--green-11);
+            }
+
+        }
+
+        .p-admin-newTech--noTechFound {
+            @include flexCenterH;
+            width: 100%;
+            font-size: 12px;
+        }
+    }
+}
+
+// COMPONENTS: Images
+.p-admin-newProject--images {
+    @include flexCenterH;
+    flex-direction: column;
+    gap: 20px;
+
+    .p-admin-newProject--banner {
+
+    }
+}

@@ -1,7 +1,10 @@
-import { compare } from "bcryptjs";
+// Essentials
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { compare } from "bcryptjs";
 import dbConnect from "../../../utils/dbConnect";
+
+// Utils
 import User from "../../../utils/models/user";
 import { IUser } from "../../../utils/models/user";
 
@@ -24,7 +27,7 @@ const options: NextAuthOptions = {
         }).select("+password");
 
         if (!user) {
-          throw new Error("Invalid credentials");
+          throw new Error("Email or password is wrong.");
         }
 
         const isPasswordCorrect = await compare(
@@ -33,7 +36,7 @@ const options: NextAuthOptions = {
         );
 
         if (!isPasswordCorrect) {
-          throw new Error("Invalid credentials");
+          throw new Error("Email or password is wrong.");
         }
 
         return user;
@@ -56,6 +59,7 @@ const options: NextAuthOptions = {
         _id: (token.user as any)._id,
         fullName: (token.user as any).fullName,
         role: (token.user as any).role,
+        username: (token.user as any).username,
         email: (token.user as any).email,
       } as IUser;
 
@@ -66,4 +70,9 @@ const options: NextAuthOptions = {
   },
 };
 
-export default NextAuth(options);
+/* export default NextAuth(options); */
+
+const authHandler = NextAuth(options);
+export default async function handler(...params: any[]) {
+  await authHandler(...params);
+}

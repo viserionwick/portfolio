@@ -1,0 +1,83 @@
+// Import Modules
+@import "./projects/index.scss";
+@import "./contacts/index.scss";
+@import "./legal/index.scss";
+@import "./settings/index.scss";
+@import "./skills/index.scss";
+@import "./users/index.scss";
+
+// Import Components
+@import "./components/index.scss";
+
+
+//
+.p-admin {
+    margin: 50px 0;
+    .p-admin__profile {
+        @include flexCenterColumn;
+        gap: 7px;
+
+        i {
+            font-size: 35px;
+        }
+
+        p {
+            font-size: 14pt;
+            text-transform: none;
+            font-variation-settings: "wght" 450;
+        }
+
+        button {
+            font-size: 7pt;
+            padding: 7px 12px;
+        }
+    }
+
+    .p-admin__menu {
+        @include flexCenterH;
+        flex-wrap: wrap;
+        gap: 25px;
+        
+        max-width: 695px;
+    
+        margin: 80px 20px;
+    
+        .p-admin__menu__item {
+            @include flexCenterColumn;
+            gap: 15px;
+            position: relative;
+            
+            min-width: 155px;
+            min-height: 130px;
+            
+            border-radius: 20px;
+            /* border: 1.5px solid #ffffff; */
+            
+            font-size: 11pt;
+            text-transform: capitalize;
+            transition: 200ms;
+        
+            i { font-size: 16pt; }
+            
+            .p-admin__menu__inboxNotification {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 38px;
+                right: 63px;
+                width: 10px;
+                height: 10px;
+                background: red;
+                border-radius: 100%;
+            }
+    
+
+            &:hover {
+                background: #25252a;
+            }
+
+            @include tablet { &:hover { background: none; } }
+
+        }
+    }
+}

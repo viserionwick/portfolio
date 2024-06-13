@@ -1,0 +1,62 @@
+.priTable {
+    width: 100%;
+    
+    font-size: 14px;
+    text-transform: none;
+    
+    border-collapse: collapse;
+    position: relative;
+
+    // Common
+    th, td {
+        padding: 10px 15px;
+        margin-right: 10px;
+        border-bottom: 2px solid $bkgColor;
+    }
+
+    // Tree
+    thead {
+        text-align: left;
+        font-variation-settings: "wght" 550;
+
+        tr {
+            th{
+                background-color: mix($bkgColor, white, 86%);
+
+                &:first-child {
+                    border-top-left-radius: 20px;
+                    border-bottom-left-radius: 20px;
+                }
+                &:last-child {
+                    border-top-right-radius: 20px;
+                    border-bottom-right-radius: 20px;
+                }
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            td {
+                background-color: mix($bkgColor, white, 94%);
+                
+                &:first-child {
+                    border-top-left-radius: 20px;
+                    border-bottom-left-radius: 20px;
+                }
+                &:last-child {
+                    border-top-right-radius: 20px;
+                    border-bottom-right-radius: 20px;
+                }
+            }
+
+            &.editable {
+                cursor: pointer;
+
+                &:hover td {
+                    background-color: rgba(white, .15);
+                }
+            }
+        }
+    }
+}

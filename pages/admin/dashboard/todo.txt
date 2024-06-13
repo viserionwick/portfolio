@@ -1,0 +1,30 @@
+Update the menu to burger style and add a "go back" button when in a page.
+
+- PROJECTS
+-- CRUD a project.
+-- Choosing the "spotlight" project.
+
+
+
+- CONTACTS
+-- Read emails.
+-- Settings
+--- Change max message.
+-- Change work availability.
+
+- USERS
+-- CRUD a user.
+-- List all users.
+
+
+
+- SETTINGS
+-- SKILLS
+--- CRUD a skill.
+--- Reorder skills.
+-- LEGAL
+--- CRUD a legal page content.
+--- List all legal pages.
+-- Social media links.
+-- Resume download link and file.
+-- Hero description.

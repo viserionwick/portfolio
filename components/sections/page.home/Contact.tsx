@@ -103,7 +103,7 @@ const Contact: React.FunctionComponent = () => {
   }
 
   return (
-    <section id="contact" className="s-contact">
+    <section id="contact" className="p-home--section s-contact">
       <H1>contact</H1>
       {
         isSending ?

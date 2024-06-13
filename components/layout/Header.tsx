@@ -1,16 +1,44 @@
 // Essentials
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useAtom } from 'jotai/react'
+
+// Components
+import jump from "jump.js";
+
+// Hooks
+import useWindowSize from "../../hooks/useWindowSize";
+import useHash from "../../hooks/useHash";
+
+// States
+import { sectionInView_atom } from "../../pages";
 
 // Svgs
 import { Logo } from "../assets/exportSvgs";
 import { useSettingsContext } from "../../contexts/settingsContext";
+import { useRouter } from "next/router";
+
 
 const Header: React.FC = () => {
 
   const settings = useSettingsContext();
-  const workStatus: boolean | undefined = settings?.work?.status;
+  const { isMobile } = useWindowSize();
+  const router = useRouter();
+  /* const { hash } = useHash();
+  const { push: goTo } = useRouter(); */
+
+  const [sectionInView] = useAtom(sectionInView_atom);
   
+  
+
+  const scrollTo = (to: string, duration: number = 300, offset: number = 0) => {
+    if (!isMobile && router.pathname === "/") {
+      /* jump(to, {duration, offset}) */
+      /* goTo(`/${to}`); */
+    }
+  }
+  const workStatus: boolean | undefined = settings?.work?.status;
+
 
   // Toggle Menu
   const [isMenu, setIsMenu] = useState<boolean>(false);
@@ -29,18 +57,82 @@ const Header: React.FC = () => {
 
   return (
     <>
-    <div className="l-header">
-      <div className="l-header__menu">
+    <div className={`
+      l-header
+      ${sectionInView === "hero" ?
+        "hide"
+        :
+        ""
+      }
+    `}>
+      <div className={`l-header__menu ${isMenu ? "on" : "off"}`}>
         <div className="l-header__menu--burger terButton" onClick={() => toggleMenu()}>
           <i className={`fa-solid ${isMenu ? "fa-angle-left" : "fa-ellipsis"}`}></i>
         </div>
         <div className={`l-header__menu--wrapper ${isMenu ? "on" : "off"}`}>
-          <Link onClick={() => toggleMenu(false)} href="/#projects" className="l-header__menu--anchor active terButton" >projects.</Link>
-          <Link onClick={() => toggleMenu(false)} href="/#skills" className="l-header__menu--anchor terButton" >skills.</Link>
-          <Link onClick={() => toggleMenu(false)} href="/#contact" className="l-header__menu--anchor terButton" >contact.</Link>
+          <Link
+            onClick={() => {toggleMenu(false); scrollTo("#projects")}}
+            href="/#projects"
+            className={`
+              l-header__menu--anchor
+              ${
+                 sectionInView === "projects" ?
+                "active"
+                :
+                ""
+              }
+              ${!isMobile ? "terButton":""}`
+            }
+          >
+            projects.
+          </Link>
+          <Link
+            onClick={() => {toggleMenu(false); scrollTo("#skills")}}
+            href="/#skills"
+            className={`
+              l-header__menu--anchor
+              ${
+                sectionInView === "skills" ?
+                "active"
+                :
+                ""
+              }
+              ${!isMobile ? "terButton":""}`
+            }
+          >
+            skills.
+          </Link>
+          <Link
+            onClick={() => {toggleMenu(false); scrollTo("#contact")}}
+            href="/#contact"
+            className={`
+              l-header__menu--anchor
+              ${
+                 sectionInView === "contact" ?
+                "active"
+                :
+                ""
+              }
+              ${!isMobile ? "terButton":""}`
+            }
+          >
+            contact.
+          </Link>
           {
             !workStatus &&
             <span className="l-header__menu--afwBlob" />
+          }
+          {
+            isMobile &&
+            <div className="l-header__otherMenu">
+              <Link
+                href="/admin"
+                className="l-header__dashboard"
+                onClick={() => toggleMenu(false)}
+              >
+                dashboard
+              </Link>
+            </div>
           }
         </div>
         {
@@ -49,6 +141,16 @@ const Header: React.FC = () => {
         }
       </div>
       <div className={`l-header__logo ${isMenu ? "off" : "on"}`}>
+        {
+          !isMobile &&
+          <Link
+            href="/admin"
+            className="l-header__dashboard terButton"
+            onClick={() => toggleMenu(false)}
+          >
+            dashboard
+          </Link>
+        }
         <Link href="/" className="l-header__logo--anchor terButton">
           <Logo className="l-header__logo--svg"/>
         </Link>

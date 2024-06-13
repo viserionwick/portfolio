@@ -1,7 +1,7 @@
 // Essentials
 import mongoose from "mongoose";
 
-const dbConnect = async () => {
+const dbConnect = async () => {    
     try {
         const { connection } = await mongoose.connect(`${process.env.MONGODB_URI}`)
 

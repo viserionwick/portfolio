@@ -1,0 +1,79 @@
+// Import Modules
+@import "./new.scss";
+
+// Main
+.p-admin-projects {
+    width: 100%;
+    @include flexCenterColumn;
+
+    gap: 30px;
+
+    margin-top: 40px;
+    margin-bottom: 180px;
+}
+
+// Project List
+.p-admin-projects__newButton {
+    width: fit-content;
+}
+
+.p-admin-projects__list{
+    display: grid;
+    grid-row-gap: 55px;
+    grid-column-gap: 2%;
+
+    width: 100%;
+    
+    @include tablet {
+        grid-template-columns: 433px !important;
+        justify-content: center;
+    }
+    
+    @include respond(495px) {
+        grid-template-columns: 100% !important;
+    }
+
+    @include respond(999px, "min") {
+        grid-template-columns: 32% 32% 32%;
+        
+        .c-card .c-card__images .c-card__stack {
+            width: 53px;
+            gap: 9px;
+            
+            .c-card--tech {
+                width: 29px;
+                height: 29px;
+            }
+        }
+    }        
+
+    @include respond(999px, "max") {
+        grid-template-columns: 49% 49%;
+        .c-card .c-card__images {
+            width: 100%;
+            min-width: unset;
+            height: 25.6vw;
+        }
+    }
+
+
+    .p-admin-projects__list--spotlightProject {
+        position: relative;
+
+        &::before {
+            content: "SPOTLIGHT";
+            position: absolute;
+            @include flexCenter;
+
+            background-color: $secColor;
+            color: black;
+            font-variation-settings: "wght" 600;
+            font-size: 10pt;
+            border-radius: 100px;
+            padding: 4px 12px;
+            top: 5px;
+
+            z-index: 99;
+        }
+    }
+}

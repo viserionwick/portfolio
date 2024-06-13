@@ -2,7 +2,8 @@
 import Link from "next/link";
 import Image from "next/image";
 
-// IMPORT: Functions
+// IMPORT: Contexts
+import { useSettingsContext } from "../contexts/settingsContext";
 
 // Layout
 export { default as Header } from "./layout/Header";
@@ -26,18 +27,27 @@ export const DownloadResume = ({ className } : { className?: string }): JSX.Elem
 // Project Cards
 type ProjectCardType = { 
     name: string,
-    stack: { title: string; logo: string }[],
+    stack: string[],
     banner: string,
-    slug: string,
+    slug?: string,
+    href?: string,
     className?: string
 }
-export const ProjectCard = ({ name, stack, banner, slug, className }: ProjectCardType): JSX.Element => {  
+export const ProjectCard = ({ name, stack, banner, slug, href, className }: ProjectCardType): JSX.Element => { 
+    const settings = useSettingsContext();
+    const allTechList = settings?.techs;
     
-    return  <Link href={`/project/${slug}`} className={`c-card ${className ? className : ""}`}>
+    const filteredStack = allTechList?.filter(tech => stack.includes(tech.title));
+    
+    
+    
+    return  <Link href={href ? `${href}` : `/project/${slug}`} className={`c-card ${className ? className : ""}`}>
                 <div className="c-card__images">
-                    <div className="c-card__stack">
+                    {
+                        filteredStack?.length !== 0 &&
+                        <div className="c-card__stack">
                         {
-                            stack && stack.map((tech, i) => (
+                            filteredStack?.map((tech, i) => (
                                 i <= 3 &&
                                 <div className="c-card--tech" key={i}>
                                     <Image
@@ -49,7 +59,8 @@ export const ProjectCard = ({ name, stack, banner, slug, className }: ProjectCar
                                 </div>
                             ))
                         }
-                    </div>
+                        </div>
+                    }
                     <div className="c-card__banner">
                         <Image
                             src={ banner }
@@ -67,7 +78,7 @@ export const ProjectCard = ({ name, stack, banner, slug, className }: ProjectCar
 type SpotlightProjectCardType = { 
     name: string,
     description: string,
-    stack: { title: string; logo: string }[],
+    stack: string[],
     banner: string,
     website?: string | null,
     repository?: string | null,
@@ -76,11 +87,19 @@ type SpotlightProjectCardType = {
 }
 
 export const SpotlightProjectCard = ({ name, description, stack, banner, website, repository, slug, className }: SpotlightProjectCardType): JSX.Element => {
+    const settings = useSettingsContext();
+    const allTechList = settings?.techs;
+    
+    const filteredStack = allTechList?.filter(tech => stack.includes(tech.title));
+
+
     return  <div className={`c-spotlightCard ${className ? className : ""}`}>
                 <Link href={`/project/${slug}`} className="c-spotlightCard__images">
-                    <div className="c-spotlightCard__stack">
+                    {
+                        filteredStack?.length !== 0 &&
+                        <div className="c-spotlightCard__stack">
                         {
-                            stack && stack.map((tech, i) => ( 
+                            filteredStack?.map((tech, i) => ( 
                                 i <= 3 &&
                                 <div className="c-spotlightCard--tech" key={i}>
                                     <Image
@@ -92,7 +111,8 @@ export const SpotlightProjectCard = ({ name, description, stack, banner, website
                                 </div>
                             ))
                         }
-                    </div>
+                        </div>
+                    }
                     <div className="c-spotlightCard__banner">
                         <Image
                             src={ banner }
@@ -171,5 +191,27 @@ export const PhoneVector = ({image, direction = "right", id, className }: PhoneV
                     />
                     <span />
                 </div>
+            </div>
+}
+
+
+
+type UnderConstructionType = {
+    className?: string;
+    redirectButton?: boolean;
+    redirectTo?: string;
+    redirectText?: string;
+}
+
+export const UnderConstruction = ({ className, redirectButton = true, redirectTo = "/", redirectText = "go home" }: UnderConstructionType): JSX.Element => {
+    return  <div className={`c-underConstruction ${className ? className : ""}`}>
+                <i className="c-underConstruction--icon fa-solid fa-triangle-exclamation" />
+                under construction
+                {
+                    redirectButton &&
+                    <Link href={redirectTo} rel="noreferrer" className="priButton">
+                        {redirectText}
+                    </Link>
+                }
             </div>
 }

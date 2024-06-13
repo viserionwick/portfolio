@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["codemyviews-blog-post-images.s3.amazonaws.com", "themes.getbootstrap.com", "blog.tubikstudio.com", "upload.wikimedia.org", "i.ibb.co"]
+    domains: ["res.cloudinary.com", "codemyviews-blog-post-images.s3.amazonaws.com", "themes.getbootstrap.com", "blog.tubikstudio.com", "upload.wikimedia.org", "i.ibb.co"]
   },
 
   webpack(config) {

@@ -1,8 +1,15 @@
-import { NextApiRequest, NextApiResponse } from "next"
+// Essentials
+import { NextApiRequest } from "next"
 import { getToken } from "next-auth/jwt"
+
+// Models
 import Role from "../models/role"
 
-const secret = process.env.NEXTAUTH_SECRET
+const secret = process.env.NEXTAUTH_SECRET //////////////////////////////////////////////
+
+
+// STATES
+
 
 // CHECKING FUNCTIONS
 export const hasToken = async (req: NextApiRequest) => {
@@ -14,7 +21,7 @@ export const hasToken = async (req: NextApiRequest) => {
   }
 }
 
-export const checkUserRole = async (req: NextApiRequest) => {
+export const checkCurrentUserRole = async (req: NextApiRequest) => {
   const token = await getToken({ req, secret }) as any;
   if (!token){
     return false
@@ -23,23 +30,25 @@ export const checkUserRole = async (req: NextApiRequest) => {
   }
 }
 
-export const checkUserPermissions = (requiredPermissions: string[]) => async (req: NextApiRequest, res: NextApiResponse, next: () => void) => {
+export const checkUserPermissions = async (
+  requiredPermissions: string[],
+  req: NextApiRequest,
+  checkAny: boolean | string = false
+): Promise<boolean> => {
+  const role = await Role.findOne({ roleName: await checkCurrentUserRole(req) });
+  
+  if (role) {
+    const isAuthorized: boolean = checkAny === true || checkAny === "true"
+      ? requiredPermissions.some((targetedString: string) => role.rolePermissions.includes(targetedString)) // Check if ANY given permission passes
+      : requiredPermissions.every((targetedString: string) => role.rolePermissions.includes(targetedString)); // Check if ALL given permissions passes
 
-  await Role.findOne({ roleName: await checkUserRole(req) })
-  .then((role) => {
-    if (role) {
-      const allStringsExist: boolean = requiredPermissions.every((targetedString: string) => role.rolePermissions.includes(targetedString));
-
-      if (allStringsExist) {
-        next();
-      } else {
-        return res.status(401).json({ error: "Not Authorized" });
-      }
+    if (isAuthorized) {        
+      return true; // Authorized.
     } else {
-        return res.status(401).json({ error: "Not Authorized" });
+      throw new Error("Not authorized.")
     }
-  })
-  .catch(() => {
-      return res.status(409).json({ error: "An Error Occured When Checking For Permission" });
-  })  
+
+  } else {
+    throw new Error("Not authorized.")
+  }
 };

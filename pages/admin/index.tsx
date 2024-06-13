@@ -2,12 +2,19 @@
 import { useState } from 'react';
 import { NextPage } from 'next';
 import { useRouter } from 'next/navigation';
-import { AxiosError } from 'axios';
-import { loginUser } from '../../utils/helpers/auth';
+
+// Auth
 import { getSession } from 'next-auth/react';
+import { loginUser } from '../../utils/helpers/auth';
+import { AxiosError } from 'axios';
+
+// Context
+import { usePopUpContext } from '../../contexts/popUpContext';
 
 const AdminLogin: NextPage = () => {
     const { push: goTo } = useRouter();
+    const { newPopUp } = usePopUpContext();
+
     
     // Handle Input
     const [email, setEmail] = useState<string>("");
@@ -72,10 +79,14 @@ const AdminLogin: NextPage = () => {
             try {
                 setFormLoading(true);
     
-                const loginRes = await loginUser({ email, password })
+                const loginRes = await loginUser({ email, password });
     
                 if (loginRes && !loginRes.ok) {
-                    console.log(loginRes.error || "");
+                    loginRes.error &&
+                    newPopUp({
+                        type: "error",
+                        description: loginRes.error
+                    });
                 }
                 else {
                     goTo("/admin/dashboard");
@@ -83,7 +94,10 @@ const AdminLogin: NextPage = () => {
             } catch (error) {
                 if (error instanceof AxiosError) {
                     const errorMsg = error.response?.data?.error
-                    console.log(errorMsg)
+                    newPopUp({
+                        type: "error",
+                        description: `Something went wrong: ${errorMsg}`
+                    });
                 }
             }
 
@@ -91,10 +105,44 @@ const AdminLogin: NextPage = () => {
         }
     }
 
+
+    // Login As Visitor
+    const visitorLogin = async () => {
+        try {
+            setFormLoading(true);
+
+            const visitorEmail: string = "visitor@viserionwick.com";
+            const visitorPassword: string = "visitorpassword";
+
+            const loginRes = await loginUser({ email: visitorEmail, password: visitorPassword });
+
+            if (loginRes && !loginRes.ok) {
+                loginRes.error &&
+                newPopUp({
+                    type: "error",
+                    description: loginRes.error
+                });
+            }
+            else {
+                goTo("/admin/dashboard");
+            }
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                const errorMsg = error.response?.data?.error
+                newPopUp({
+                    type: "error",
+                    description: `Something went wrong: ${errorMsg}`
+                });
+            }
+        }
+
+        setFormLoading(false);
+    }
+
     return (
     <div className="p-admin">
         <form onSubmit={handleSubmit} className="p-admin__login priForm">
-            <h1>administrator</h1>
+            <h1>dashboard</h1>
             <input
                 className={emailError ? "error" : ""}
                 type="email"
@@ -117,7 +165,16 @@ const AdminLogin: NextPage = () => {
                 onChange={handleChange}
                 disabled={formLoading}
             />
-            <button className={formLoading ? "priButton loading" : "priButton"} disabled={formLoading}>login</button>
+            <button
+                className={formLoading ? "priButton loading" : "priButton"}
+                disabled={formLoading}>login</button>
+            <br/>
+            <button
+                className={formLoading ? "priButton inverted loading" : "priButton inverted"}
+                disabled={formLoading}
+                type="button"
+                onClick={visitorLogin}
+            >visit the dashboard</button>
         </form>
     </div>
   )

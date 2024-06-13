@@ -20,7 +20,7 @@ const Projects: React.FunctionComponent<AllProps> = ({ spotlightProject, project
 
   const [initFetch, setInitFetch] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(true);
-
+  
 
   const handleProjects = (newProjects: IProject[]) => {
     if (newProjects) {
@@ -63,7 +63,7 @@ const Projects: React.FunctionComponent<AllProps> = ({ spotlightProject, project
   };
 
   return (
-    <section id="projects" className="s-projects">
+    <section id="projects" className="p-home--section s-projects">
       <H1>projects</H1>
       {
         spotlightProject &&

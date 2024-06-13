@@ -1,15 +1,9 @@
-.p-admin__login {
-    @include flexCenterColumnH;
-    gap: 20px;
-    width: 230px;
-    margin: 50px 0;
-
-    button, input, select, h1 {
-        width: 100%;
-        text-align: center;
-        outline: none;
-    }
-    select {
-        color: gray;
-    }
-}
+// IMPORTS
+@import "./dashboard/index.scss";
+@import "./dashboard/login.scss";
+@import "./dashboard/projects/index.scss";
+@import "./dashboard/skills/index.scss";
+@import "./dashboard/contacts/index.scss";
+@import "./dashboard/users/index.scss";
+@import "./dashboard/skills/index.scss";
+@import "./dashboard/settings/index.scss";

@@ -8,17 +8,14 @@ export const projectQueryDefs = `#graphql
 
 export const projectMutationDefs = `#graphql
   createProject(input: ProjectInput): Project
+  updateProject(input: ProjectInput): Project
+  deleteProject(projectID: String!): DeleteProjectResponse!
 `
 
 export const projectTypeDefs = gql`
   type Dates {
     start: String
     end: String
-  }
-
-  type Stack {
-    title: String
-    logo: String
   }
 
   type Description {
@@ -35,14 +32,22 @@ export const projectTypeDefs = gql`
   type Author {
     authorID: String
     authorName: String
+    authorUsername: String
   }
 
-  type Project {
+  type UpdatedTime {
+    updatedAt: String
+    authorID: String
+    authorUsername: String
+    authorRoleAtTheTime: String
+  }
+
+  type Project  {
     _id: ID
     slug: String
     dates: Dates
     title: String
-    stack: [Stack]
+    stack: [String]
     description: Description
     tab1: Tab
     tab2: Tab
@@ -52,9 +57,15 @@ export const projectTypeDefs = gql`
     mobileImages: [String]
     author: Author
     createdAt: String
-    updatedAt: String
+    updatedTimes: [UpdatedTime]
     tags: [String]
     spotlight: Boolean
+  }
+
+
+  type DeleteProjectResponse {
+    success: Boolean!
+    message: String!
   }
 `;
 
@@ -62,11 +73,6 @@ export const projectInputDefs = gql`
   input DatesInput {
     start: String!
     end: String!
-  }
-
-  input StackInput {
-    title: String!
-    logo: String!
   }
 
   input DescriptionInput {
@@ -83,23 +89,32 @@ export const projectInputDefs = gql`
   input AuthorInput {
     authorID: String!
     authorName: String!
+    authorUsername: String!
+  }
+
+  input UpdatedTimeInput {
+    updatedAt: String!
+    authorID: String!
+    authorUsername: String!
+    authorRoleAtTheTime: String!
   }
 
   input ProjectInput {
+    _id: ID
     slug: String!
-    dates: DatesInput!
+    dates: DatesInput
     title: String!
-    stack: [StackInput]
+    stack: [String]
     description: DescriptionInput
-    tab1: TabInput!
-    tab2: TabInput!
-    tab3: TabInput!
+    tab1: TabInput
+    tab2: TabInput
+    tab3: TabInput
     banner: String!
     desktopImages: [String!]
     mobileImages: [String!]
     author: AuthorInput!
     createdAt: String!
-    updatedAt: String
+    updatedTimes: [UpdatedTimeInput]
     tags: [String]
     spotlight: Boolean!
   }

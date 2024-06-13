@@ -1,6 +1,15 @@
 .p-home {
     @include flexCenterColumnH;
     width: 100%;
+
+    .p-home--section {
+        opacity: 0;
+        transition: 400ms;
+
+        /* &.show {
+            opacity: 1 !important;
+        } */
+    }
 }
 
 .p-notFound {

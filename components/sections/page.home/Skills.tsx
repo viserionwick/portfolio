@@ -13,7 +13,7 @@ const Skills: React.FunctionComponent<AllProps> = ({ skills }) => {
   const skillSet = skills?.skillSet;
   
   return (
-    <section id="skills" className="s-skills">
+    <section id="skills" className="p-home--section s-skills">
         <H1>skills</H1>
         <div className="s-skills--marquees">
           <Marquee className="s-skills__marquee" direction="left" gradient={false} speed={30}>

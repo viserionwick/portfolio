@@ -1,17 +1,14 @@
 import { Schema, model, models } from "mongoose";
 
 export interface IProject {
-  id?: string;
+  _id?: string;
   slug: string;
   dates: {
-    start: string;
-    end: string;
+    start: string | Date;
+    end: string | Date;
   };
   title: string;
-  stack: {
-    title: string;
-    logo: string;
-  }[];
+  stack: string[];
   description: {
     text: string;
     webLink: string;
@@ -35,9 +32,15 @@ export interface IProject {
   author: {
     authorID: string;
     authorName: string;
+    authorUsername: string;
   };
   createdAt: string;
-  updatedAt: string;
+  updatedTimes?: {
+    updatedAt: string;
+    authorID: string;
+    authorUsername: string;
+    authorRoleAtTheTime: string;
+  }[];
   tags: string[];
   spotlight: boolean;
 }
@@ -49,12 +52,7 @@ const ProjectSchema = new Schema<IProject>({
   },
   slug: { type: String, required: true },
   title: { type: String, required: true },
-  stack: [
-    {
-      title: String,
-      logo: String,
-    },
-  ],
+  stack: { type: [String] },
   description: {
     text: { type: String, required: true },
     webLink: String,
@@ -78,12 +76,23 @@ const ProjectSchema = new Schema<IProject>({
   author: {
     authorID: { type: String, required: true },
     authorName: { type: String, required: true },
+    authorUsername: { type: String, required: true },
   },
   createdAt: {
     type: String,
     required: true,
   },
-  updatedAt: String,
+  updatedTimes: {
+    type: [
+      {
+        updatedAt: { type: String, required: true },
+        authorID: { type: String, required: true },
+        authorUsername: { type: String, required: true },
+        authorRoleAtTheTime: { type: String, required: true },
+      }
+    ],
+    default: []
+  },
   tags: [String],
   spotlight: { type: Boolean, required: true },
 });

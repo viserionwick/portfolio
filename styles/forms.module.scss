@@ -1,12 +1,14 @@
-// Colors
-/* $priColor: #0e0f0f; */
-$secColor: #feffc8;
-$bkgColor: #171718;
+// Buttons: Basics
+.clearButton {
+  border: 0;
+  padding: 0;
 
-// Fonts
-$priFont: "Plus Jakarta Sans";
+  font-family: $priFont;
+  font-size: 13px;
+  font-variation-settings: "wght" 700;
+  white-space: nowrap;
+}
 
-// Buttons
 .priButton {
   display: flex;
   justify-content: center;
@@ -19,9 +21,11 @@ $priFont: "Plus Jakarta Sans";
   font-family: $priFont;
   font-size: 13px;
   font-variation-settings: "wght" 700;
+  white-space: nowrap;
 
   padding: 10px 24px;
   border-radius: 20px;
+  
 
   cursor: pointer;
   transition: 100ms;
@@ -97,6 +101,7 @@ $priFont: "Plus Jakarta Sans";
     color: white;
     background: none;
     border: 2px solid white;
+    padding: 8px 22px;
 
     &:hover {
       background: rgba(white, 0.1);
@@ -108,6 +113,26 @@ $priFont: "Plus Jakarta Sans";
       }
     }
   }
+
+  &.fullWidth { width: 100% !important; }
+  &.fullHeight { height: 100% !important; }
+
+  &.contrast {
+    color: white;
+    background: $bkgColor;
+
+    &:hover { background: rgba($bkgColor, 0.8); }
+
+    @include mobile {
+      &:hover {
+        background: none;
+      }
+    }
+  }
+
+  &.red {
+    background-color: var(--red-12);
+  }
 }
 
 .secButton {
@@ -118,6 +143,7 @@ $priFont: "Plus Jakarta Sans";
   font-family: $priFont;
   font-size: 13px;
   font-variation-settings: "wght" 500;
+  white-space: nowrap;
 
   padding: 10px 24px;
   border-radius: 20px;
@@ -145,6 +171,7 @@ $priFont: "Plus Jakarta Sans";
   font-family: $priFont;
   font-size: 13px;
   font-variation-settings: "wght" 500;
+  white-space: nowrap;
 
   padding: 10px 24px;
   border-radius: 20px;
@@ -163,6 +190,31 @@ $priFont: "Plus Jakarta Sans";
   }
 }
 
+// Buttons: Features
+.priButtonGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    border-radius: 0;
+    border-right: 1px solid $bkgColor;
+
+    &:first-child {
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+    
+    &:last-child {
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border-right: 0;
+    }
+  }
+}
+
+
+// Forms
 .priForm {
   // Text Inputs
   input[type="text"],
@@ -174,7 +226,7 @@ $priFont: "Plus Jakarta Sans";
 
     font-family: "Plus Jakarta Sans";
     font-size: 13px;
-    font-variation-settings: "wght" 650;
+    font-variation-settings: "wght" 500;
 
     padding: 10px 24px;
 
@@ -182,6 +234,8 @@ $priFont: "Plus Jakarta Sans";
     border-radius: 20px;
 
     background-color: rgba(white, 0.2);
+
+    outline: none !important;
 
     &.error {
       background-color: rgba(red, 0.2);

@@ -34,7 +34,6 @@ const Project: NextPage<AllProps> = ({ project, projects }) => {
             description: project.description.text,
             article: {
               publishedTime: project.createdAt,
-              modifiedTime: project.updatedAt || undefined,
               tags: project.tags.length >= 1 ? project.tags : undefined, 
             },
           }}

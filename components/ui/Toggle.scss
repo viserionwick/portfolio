@@ -1,0 +1,21 @@
+.Toggle {
+  all: unset;
+  background-color: white;
+  color: black;
+  border-radius: 4px;
+  display: flex;
+  font-size: 15px;
+  line-height: 1;
+  align-items: center;
+  justify-content: center;
+  text-transform: none;
+  font-variation-settings: "wght" 700;
+  font-size: 12px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  cursor: pointer;
+  
+}
+.Toggle[data-state="on"] {
+  background-color: var(--green-11);
+}

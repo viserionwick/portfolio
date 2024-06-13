@@ -1,5 +1,6 @@
 // Essentials
 import axios from "axios";
+import { IProject } from "../models/project";
 import { GRAPHQL_API_ENDPOINT } from "../veriables";
 
 // Fetch One Project With Key
@@ -9,38 +10,48 @@ export const getProject = async (slug: string) => {
       query: `
           query GetProject($slug: String!) {
             getProject(slug: $slug) {
-              title
-              desktopImages
-              mobileImages
+              _id
+              slug
               dates {
-                  start
-                  end
+                start
+                end
               }
-              stack {
-                  title
-                  logo
-              }
+              title
+              stack
               description {
-                  text
-                  webLink
-                  repLink
+                text
+                webLink
+                repLink
               }
               tab1 {
-                  title
-                  text
+                title
+                text
               }
               tab2 {
-                  title
-                  text
+                title
+                text
               }
               tab3 {
-                  title
-                  text
+                title
+                text
               }
-              slug
+              banner
+              desktopImages
+              mobileImages
+              author {
+                authorID
+                authorName
+                authorUsername
+              }
               createdAt
-              updatedAt
+              updatedTimes {
+                updatedAt
+                authorID
+                authorUsername
+                authorRoleAtTheTime
+              }
               tags
+              spotlight
             }
           }
         `,
@@ -72,10 +83,7 @@ export const getSpotlightProject = async () => {
                 webLink
                 repLink
               }
-              stack {
-                  title
-                  logo
-              }
+              stack
               slug
             }
           }
@@ -100,10 +108,7 @@ export const getProjects = async (limit: number, excludeSpotlight?: boolean, exc
             getProjects(limit: $limit, excludeSpotlight: $excludeSpotlight, excludeSlug: $excludeSlug, offset: $offset) {
               title
               banner
-              stack {
-                  title
-                  logo
-              }
+              stack
               slug
               createdAt
               tags
@@ -128,83 +133,93 @@ export const getProjects = async (limit: number, excludeSpotlight?: boolean, exc
 };
 
 // Create A Project
-/* export const createProject = async (limit: number) => {
+export const createProject = async (input: IProject) => {
   try {
-    const response = await axios.post(`${process.env.GRAPHQL_API_ENDPOINT}`, {
+    const response = await axios.post(`${GRAPHQL_API_ENDPOINT}`, {
       query: `
-            query GetLatestProjects($limit: Int!) {
-              getProjects(limit: $limit) {
-                _id
-                title
-              }
-            }
-          `,
+        mutation CreateProject($input: ProjectInput!) {
+          createProject(input: $input) {
+            title
+            slug
+          }
+        }
+      `,
       variables: {
-        limit,
+        input
       },
     });
 
-    const projects = response.data.data.getProjects;
+    const createdProject = response.data.data.createProject;
+    const errors = response.data.errors;
 
-    return projects;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}; */
-
-/* 
-
-mutation CreateProject($input: ProjectInput!) {
-    createProject(input: $input) {
-        title
-        desktopImages
-        mobileImages
-        createdAt
-        description {
-            text
-        }
-        author {
-            authorID
-            authorName
-        }
-        _id
-        slug
+    if (errors && errors.length >= 1) {
+      throw new Error(errors[0].message)
+    } else {
+      return createdProject;
     }
-}
-
-
-
-{
-  "input": {
-    "title": "NEW Project3",
-    "dates": {
-        "start": "2023-05-22T12:00:00Z",
-        "end": "2023-05-22T12:00:00Z"
-    },
-    "desktopImages": ["image1.jpg", "image2.jpg"],
-    "mobileImages": ["image3.jpg", "image4.jpg"],
-    "createdAt": "2023-05-22T12:00:00Z",
-    "description": {
-      "text": "This is a random project description."
-    },
-    "tab1": {
-      "title": "tab 1",
-      "text": "tab 1 text"
-    },
-    "tab2": {
-      "title": "tab 2",
-      "text": "tab 2 text"
-    },
-    "tab3": {
-      "title": "tab 3",
-      "text": "tab 3 text"
-    },
-    "author": {
-      "authorID": "456",
-      "authorName": "Jane Smith"
-    },
-    "slug": "new-project3"
+  } catch (error: any) {
+    console.error(error.message);
+    throw error;
   }
-}
-*/
+};
+
+
+// Update A Project
+export const updateProject = async (input: IProject) => {
+  try {
+    const response = await axios.post(`${GRAPHQL_API_ENDPOINT}`, {
+      query: `
+        mutation UpdateProject($input: ProjectInput!) {
+          updateProject(input: $input) {
+            title
+            slug
+          }
+        }
+      `,
+      variables: {
+        input
+      },
+    });
+
+    const updatedProject = response.data.data.updateProject;
+    const errors = response.data.errors;
+
+    if (errors && errors.length >= 1) {
+      throw new Error(errors[0].message)
+    } else {
+      return updatedProject;
+    }
+  } catch (error: any) {
+    console.error(error.message);
+    throw error;
+  }
+};
+
+
+// Delete A Project
+export const deleteProject = async (projectID: string) => {
+  try {
+    const response = await axios.post(`${GRAPHQL_API_ENDPOINT}`, {
+      query: `
+        mutation DeleteProject($projectID: String!) {
+          deleteProject(projectID: $projectID) {
+            success
+            message
+          }
+        }
+      `,
+      variables: {
+        projectID
+      },
+    });
+
+    if (response.data.errors && response.data.errors.length >= 1) {
+      throw new Error(response.data.errors[0].message);
+    } else {
+      return response.data.data.deleteProject;
+    }
+  } catch (error: any) {
+    console.error(error.message);
+    throw error;
+  }
+};

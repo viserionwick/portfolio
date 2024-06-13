@@ -4,6 +4,7 @@ import { useSettingsContext } from "../../contexts/settingsContext";
 
 const Footer: React.FC = () => {
   const settings = useSettingsContext();
+  
   const socialMedia = settings?.socialMedia;
 
     return (

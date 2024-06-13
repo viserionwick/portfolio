@@ -15,6 +15,12 @@ export interface ISettings {
   heroDescription: string;
   websiteDescription: string;
   websiteName: string;
+  techs: TechType[];
+}
+
+export type TechType = {
+  title: string,
+  logo: string,
 }
 
 const SettingsSchema = new Schema<ISettings>({
@@ -33,7 +39,13 @@ const SettingsSchema = new Schema<ISettings>({
   ],
   heroDescription: { type: String, required: true },
   websiteDescription: { type: String, required: true },
-  websiteName: { type: String, required: true }
+  websiteName: { type: String, required: true },
+  techs: [
+    {
+      title: { type: String, required: true },
+      logo: { type: String, required: true },
+    }
+  ]
 });
 
 const Settings = models.Settings || model("Settings", SettingsSchema);

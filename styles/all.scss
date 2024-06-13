@@ -1,8 +1,8 @@
 // Imports: Essentials
 @import "./responsive.module.scss";
+@import "./root.module.scss";
 @import "./forms.module.scss";
 @import "./positions.module.scss";
-@import "./root.module.scss";
 
 // Imports: Fonts
 @import "../fonts/FontAwesome/css/all.min.css";
@@ -14,6 +14,7 @@
 
 // Imports: Essential Components
 @import "../components/index.scss";
+@import "../components/ui/index.scss";
 @import "../components/layout/Layout.scss";
 
 // Imports: Page Components: Home

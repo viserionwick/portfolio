@@ -6,10 +6,10 @@ import { useSettingsContext } from "../../../contexts/settingsContext";
 
 // Components
 import { DownloadResume } from "../..";
+import jump from "jump.js";
 
 // Svgs
 import { Icon } from "../../../components/assets/exportSvgs";
-import jump from "jump.js";
 import Link from "next/link";
 
 const Hero: React.FunctionComponent = () => {
@@ -25,7 +25,7 @@ const Hero: React.FunctionComponent = () => {
   
   
   return (
-    <section className="s-hero">
+    <section className="p-home--section s-hero" id="hero">
       <div className="s-hero--wrapper">
         <Icon className="s-hero__icon" />
         <div className="s-hero__rightSide">

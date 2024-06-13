@@ -90,6 +90,7 @@
         .p-project__tabs {
             @include flexCenterColumnH;
             gap: 315px;
+            min-width: 100%;
 
             @include tablet {
                 gap: 170px;

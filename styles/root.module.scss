@@ -1,3 +1,10 @@
+// Veriables
+$secColor: #feffc8;
+$bkgColor: #171718;
+
+// Veriables: Fonts
+$priFont: "Plus Jakarta Sans";
+
 // Essentials
 * {
   box-sizing: border-box;
@@ -32,7 +39,7 @@ body {
   }
 }
 
-// UI
+// UI Basics
 h1,
 h2,
 h3,
@@ -133,6 +140,11 @@ textarea {
     display: none;
   }
 }
+
+// UX
+.hide { opacity: 0 !important; }
+.show { opacity: 1 !important; }
+.delete { display: none; }
 
 // Animations
 @keyframes bounce {
