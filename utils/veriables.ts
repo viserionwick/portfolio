@@ -4,5 +4,5 @@ export const WEBSITE_URL =  process.env.NODE_ENV === "development" ?
                             process.env.WEBSITE_URL
                             : ""
 
-export const GRAPHQL_API_ENDPOINT = `${WEBSITE_URL}/api/graphql`;
-export const AUTH_API_ENDPOINT = `${WEBSITE_URL}/api/auth`;
+export const GRAPHQL_API_ENDPOINT = `/api/graphql`;
+export const AUTH_API_ENDPOINT = `/api/auth`;
