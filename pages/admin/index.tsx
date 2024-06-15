@@ -1,7 +1,7 @@
 // Essentials
 import { useState } from 'react';
 import { NextPage } from 'next';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 // Auth
 import { getSession } from 'next-auth/react';
@@ -13,7 +13,10 @@ import { usePopUpContext } from '../../contexts/popUpContext';
 
 const AdminLogin: NextPage = () => {
     const { push: goTo } = useRouter();
+    const searchParams = useSearchParams()
+    const redirect = searchParams.get("redirect");
     const { newPopUp } = usePopUpContext();
+    
 
     
     // Handle Input
@@ -89,7 +92,11 @@ const AdminLogin: NextPage = () => {
                     });
                 }
                 else {
-                    goTo("/admin/dashboard");
+                    if (redirect) {
+                        goTo(redirect);
+                    } else {
+                        goTo("/admin/dashboard");
+                    }
                 }
             } catch (error) {
                 if (error instanceof AxiosError) {
@@ -124,7 +131,11 @@ const AdminLogin: NextPage = () => {
                 });
             }
             else {
-                goTo("/admin/dashboard");
+                if (redirect) {
+                    goTo(redirect);
+                } else {
+                    goTo("/admin/dashboard");
+                }
             }
         } catch (error) {
             if (error instanceof AxiosError) {

@@ -1,12 +1,25 @@
-export { default } from 'next-auth/middleware'
-export const config = {
-    matcher: [
-        '/admin/dashboard',
-        '/admin/dashboard/projects',
-        '/admin/dashboard/skills',
-        '/admin/dashboard/contacts',
-        '/admin/dashboard/users',
-        '/admin/dashboard/legal',
-        '/admin/dashboard/settings',
-    ]
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { getToken } from 'next-auth/jwt';
+
+export async function middleware(req: NextRequest) {
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+
+  const url = req.nextUrl.clone();
+
+  if (url.pathname.startsWith('/admin/dashboard')) {
+    if (!token) {
+      const loginUrl = new URL('/admin', req.url);
+      loginUrl.searchParams.set('redirect', req.nextUrl.pathname + req.nextUrl.search);      
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  return NextResponse.next();
 }
+
+export const config = {
+  matcher: [
+    '/admin/:path*',
+  ],
+};
