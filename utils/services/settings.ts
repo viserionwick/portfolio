@@ -8,6 +8,9 @@ import { TechType } from "../models/settings";
 
 // Fetch All Settings
 export const getSettings = async (settingsToGet?: string) => {
+  console.log(GRAPHQL_API_ENDPOINT);
+  
+
   if (settingsToGet) {
     try {
       const response = await axios.post(`${GRAPHQL_API_ENDPOINT}`, {
