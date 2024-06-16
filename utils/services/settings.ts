@@ -13,7 +13,7 @@ export const getSettings = async (settingsToGet?: string) => {
 
   if (settingsToGet) {
     try {
-      const response = await axios.post(`${GRAPHQL_API_ENDPOINT}`, {
+      const response = await axios.post(`https://viserionwick.vercel.app/api/graphql`, {
         query: `
               query GetSettings {
                   getSettings {
