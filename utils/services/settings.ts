@@ -9,11 +9,12 @@ import { TechType } from "../models/settings";
 // Fetch All Settings
 export const getSettings = async (settingsToGet?: string) => {
   console.log(GRAPHQL_API_ENDPOINT);
+  console.log("env: ", process.env.WEBSITE_URL);
   
 
   if (settingsToGet) {
     try {
-      const response = await axios.post(`https://viserionwick.vercel.app/api/graphql`, {
+      const response = await axios.post(`${GRAPHQL_API_ENDPOINT}`, {
         query: `
               query GetSettings {
                   getSettings {
