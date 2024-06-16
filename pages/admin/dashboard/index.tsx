@@ -13,6 +13,7 @@ const Admin: NextPage = () => {
     const user = session?.user;
 
     const newInbox: boolean = false;
+    console.log("env2 : ", process.env.WEBSITE_URL);
     
     return (
     <div className="p-admin">

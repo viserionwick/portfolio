@@ -4,5 +4,5 @@
                             process.env.WEBSITE_URL
                             : "" */
 
-export const GRAPHQL_API_ENDPOINT = `${process.env.WEBSITE_URL}/api/graphql`;
-export const AUTH_API_ENDPOINT = `${process.env.WEBSITE_URL}/api/auth`;
+export const GRAPHQL_API_ENDPOINT = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/graphql`;
+export const AUTH_API_ENDPOINT = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/auth`;
