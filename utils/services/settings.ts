@@ -8,8 +8,6 @@ import { TechType } from "../models/settings";
 
 // Fetch All Settings
 export const getSettings = async (settingsToGet?: string) => {
-  console.log(GRAPHQL_API_ENDPOINT);
-  console.log("env: ", process.env.WEBSITE_URL);
   
 
   if (settingsToGet) {

@@ -76,7 +76,6 @@ const Admin_NewProject: NextPage<{ projectToEdit: IProject, projectToEditTechLis
   // Update project state if in edit mode.
   useEffect(() => { 
     if(projectToEdit){
-      console.log("projectToEdit: ", projectToEdit);
       
       setProject({
         ...project,
@@ -99,7 +98,7 @@ const Admin_NewProject: NextPage<{ projectToEdit: IProject, projectToEditTechLis
 
 
       setCurrentTags(projectToEdit.tags.join(", "));
-      setCurrentStack(projectToEditTechList);
+      setCurrentStack(projectToEditTechList.filter(tech => projectToEdit.stack.includes(tech.title)));
 
       setExistingBanner([projectToEdit.banner]);
       setExistingDesktopImages(projectToEdit.desktopImages);
@@ -204,21 +203,23 @@ const Admin_NewProject: NextPage<{ projectToEdit: IProject, projectToEditTechLis
           }
         }
 
-
+        
         // Update images: Desktop Images. 
         if(currentDesktopImages.length) { // New: Desktop Images
-          let publicIDs: string[] = [];
+          if (projectToEdit.desktopImages.length) {
+            let publicIDs: string[] = [];
 
-          projectToEdit.desktopImages.map((url) => {
-            publicIDs = [
-              ...publicIDs,
-              getProjectImagePublicID(url)
-            ]
-          })          
+            projectToEdit.desktopImages.map((url) => {
+              publicIDs = [
+                ...publicIDs,
+                getProjectImagePublicID(url)
+              ]
+            })          
 
-          deleteMedia(publicIDs);
+            await deleteMedia(publicIDs);
+          }
 
-          uploadMedia({currentDesktopImages}, `projects/${projectToEdit.author.authorUsername}/${projectToEdit.slug}`).then(async data => {  
+          await uploadMedia({currentDesktopImages}, `projects/${projectToEdit.author.authorUsername}/${projectToEdit.slug}`).then(async data => {  
             storeImages("desktopImages", data.currentDesktopImages);
           });
 
@@ -236,7 +237,7 @@ const Admin_NewProject: NextPage<{ projectToEdit: IProject, projectToEditTechLis
             ]
           })          
 
-          imagesToDelete.length && deleteMedia(imagesToDelete);
+          imagesToDelete.length && await deleteMedia(imagesToDelete);
 
           newProject = {
             ...newProject,
@@ -247,18 +248,20 @@ const Admin_NewProject: NextPage<{ projectToEdit: IProject, projectToEditTechLis
 
         // Update images: Mobile Images. 
         if(currentMobileImages.length) { // New: Mobile Images
-          let publicIDs: string[] = [];
+          if(projectToEdit.mobileImages.length) {
+            let publicIDs: string[] = [];
 
-          projectToEdit.mobileImages.map((url) => {
-            publicIDs = [
-              ...publicIDs,
-              getProjectImagePublicID(url)
-            ]
-          })          
+            projectToEdit.mobileImages.map((url) => {
+              publicIDs = [
+                ...publicIDs,
+                getProjectImagePublicID(url)
+              ]
+            })          
 
-          deleteMedia(publicIDs);
+            await deleteMedia(publicIDs);
+          }
 
-          uploadMedia({currentMobileImages}, `projects/${projectToEdit.author.authorUsername}/${projectToEdit.slug}`).then(async data => {  
+          await uploadMedia({currentMobileImages}, `projects/${projectToEdit.author.authorUsername}/${projectToEdit.slug}`).then(async data => {  
             storeImages("mobileImages", data.currentMobileImages);
           });
 
@@ -276,7 +279,7 @@ const Admin_NewProject: NextPage<{ projectToEdit: IProject, projectToEditTechLis
             ]
           })          
 
-          imagesToDelete.length && deleteMedia(imagesToDelete);
+          imagesToDelete.length && await deleteMedia(imagesToDelete);
 
           newProject = {
             ...newProject,
