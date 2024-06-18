@@ -22,6 +22,8 @@ import { getSkills } from '../utils/services/skills'
 export const sectionInView_atom = atom("");
 
 const Home: NextPage<AllProps> = ({ spotlightProject, projects, skills }) => {
+  console.log("xxx");
+  
 
   const [sectionInView, setSectionInView] = useAtom(sectionInView_atom);
 
