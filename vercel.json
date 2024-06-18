@@ -1,8 +1,14 @@
 {
     "version": 2,
+    "builds": [
+      {
+        "src": "pages/api/**/*.ts",
+        "use": "@vercel/node"
+      }
+    ],
     "functions": {
       "api/**/*.ts": {
-        "maxDuration": 60
+        "maxDuration": 30
       }
     }
-}  
+}
