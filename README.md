@@ -9,7 +9,6 @@ This project was built using these technologies (create-next-app):
 + TypeScript
 + Sass
 + GraphQL
-+ Jest
 ___
 
 ### 🔧 USE IT AS YOUR OWN
