@@ -190,12 +190,13 @@ const Admin_NewProject: NextPage<{ projectToEdit: IProject, projectToEditTechLis
 
         // Update images: Banner.        
         if(currentBanner.length){ // New: Banner
-          deleteMedia([getProjectImagePublicID(projectToEdit.banner)]);
+          await deleteMedia([getProjectImagePublicID(projectToEdit.banner)]);
 
-          uploadMedia({currentBanner}, `projects/${projectToEdit.author.authorUsername}/${projectToEdit.slug}`).then(async data => {  
+          await uploadMedia({currentBanner}, `projects/${projectToEdit.author.authorUsername}/${projectToEdit.slug}`).then(async data => {  
             storeImages("banner", data.currentBanner, true);
           });
-      
+          
+          
         } else { // Keep: Banner
           newProject = {
             ...newProject,
