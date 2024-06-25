@@ -26,14 +26,9 @@ git clone https://github.com/viserionwick/portfolio.git
 3. Open terminal and use this command to start the app:
 ```
 npm run dev
-```
-OR
-```
+# or
 yarn dev
-```
-OR
-```
+# or
 pnpm dev
 ```
-
 4. Congrats! Your app is live on your computer. Go to: [http://localhost:3000](http://localhost:3000)
