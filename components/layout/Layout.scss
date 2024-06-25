@@ -163,7 +163,7 @@
             .l-header__menu--afwBlob {
                 display: block;
                 position: absolute;
-                right: 38px;
+                right: 44px;
                 top: 8px;
                 
                 width: 24px;
@@ -173,6 +173,14 @@
                 background: $secColor;
 
                 z-index: 1;
+                
+                @include tablet {
+                    right: 19px;
+                    top: 169px;
+                    width: 149px;
+                    filter: blur(35px);
+                    background: mix($secColor, transparent, 70%);
+                }
             }
         }
 
@@ -187,7 +195,7 @@
             
             color: $secColor;
 
-            &::after {
+            /* &::after {
                 content: "";
                 display: block;
                 position: absolute;
@@ -197,7 +205,7 @@
                 box-shadow: 0 0 12px 7px $bkgColor;
 
                 z-index: -1;
-            }
+            } */
 
             @include tablet {
                 &.on {
