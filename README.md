@@ -1,3 +1,5 @@
+![viserion wick banner](https://res.cloudinary.com/viserionwick/image/upload/v1719250401/projects/admin/portfolio/desktop_1_aqppfa.jpg)
+
 ## 🐲 ABOUT
 A portfolio website created by Viserion Wick.
 This is the personal website of [Viserion Wick](https://viserionwick.vercel.app) but you can fork and modify it as you wish to use it as your own.
