@@ -19,7 +19,7 @@ export const H1 = ({ children, className }: { children: React.ReactNode, classNa
 
 // Buttons
 export const DownloadResume = ({ className } : { className?: string }): JSX.Element => {
-    return  <Link href="/viserionwick-resume.pdf" target="_blank" rel="noreferrer" className={ `${className ? className : ""}` }>
+    return  <Link href="/resume-full-stack-developer-viserionwick.pdf" target="_blank" rel="noreferrer" className={ `${className ? className : ""}` }>
                 download resumé.pdf
             </Link>
 }
