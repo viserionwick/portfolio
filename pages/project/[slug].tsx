@@ -1,6 +1,6 @@
 // Essentials
 import { NextPage } from "next";
-import { NextSeo } from 'next-seo';
+import { NextSeo } from "next-seo";
 
 // Hooks
 import useWindowSize from "../../hooks/useWindowSize";
