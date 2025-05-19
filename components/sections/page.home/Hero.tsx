@@ -46,7 +46,7 @@ const Hero: React.FunctionComponent = () => {
                   ))
                 }
               </div>
-              <DownloadResume className="s-hero__resume secButton"/>
+              {/* <DownloadResume className="s-hero__resume secButton"/> */}
             </div>
           </div>
           <div className="s-hero__menu">
