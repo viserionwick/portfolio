@@ -54,7 +54,7 @@ const Skills: React.FunctionComponent<AllProps> = ({ skills }) => {
           </Marquee>
         </div>
 
-        <DownloadResume className="s-skills__resume priButton"/>
+        {/* <DownloadResume className="s-skills__resume priButton"/> */}
     </section>
   )
 }
